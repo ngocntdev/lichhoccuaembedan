@@ -12,7 +12,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 50vh; /* Chiều cao bằng chiều cao màn hình */
+            height: 100vh; /* Chiều cao bằng chiều cao màn hình */
             margin: 0;
             background-color: pink;
             font-family: 'Frankfurter', sans-serif; /* Sử dụng font Frankfurter */
@@ -57,8 +57,8 @@
 
         /* Tạo hình trái tim rực cháy */
         .heart {
-            width: 200px; /* Kích thước trái tim được điều chỉnh */
-            height: 200px; /* Kích thước trái tim được điều chỉnh */
+            width: 200px; /* Kích thước trái tim nhỏ hơn */
+            height: 200px; /* Kích thước trái tim nhỏ hơn */
             background: linear-gradient(to right, #ff4500, #ffcc00); /* Màu sắc chuyển đổi từ đỏ sang vàng */
             position: relative;
             transform: rotate(-45deg);
@@ -80,20 +80,20 @@
 
         .heart::before, .heart::after {
             content: "";
-            width: 200px; /* Kích thước trái tim được điều chỉnh */
-            height: 200px; /* Kích thước trái tim được điều chỉnh */
+            width: 200px; /* Kích thước trái tim nhỏ hơn */
+            height: 200px; /* Kích thước trái tim nhỏ hơn */
             background: linear-gradient(to right, #ff4500, #ffcc00); /* Màu sắc chuyển đổi từ đỏ sang vàng */
             border-radius: 50%;
             position: absolute;
         }
 
         .heart::before {
-            top: -200px; /* Điều chỉnh vị trí để hiển thị tốt hơn */
+            top: -100px; /* Điều chỉnh vị trí để hiển thị tốt hơn */
             left: 0;
         }
 
         .heart::after {
-            left: 200px; /* Điều chỉnh vị trí để hiển thị tốt hơn */
+            left: 100px; /* Điều chỉnh vị trí để hiển thị tốt hơn */
             top: 0;
         }
 
@@ -222,3 +222,6 @@
             
             // Kiểm tra đầu vào và hiển thị một thông báo xác nhận (đơn giản)
         }
+    </script>
+</body>
+</html>
