@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Frankfurter&display=swap" rel="stylesheet">
     <style>
         /* CSS của trang */
-        body, html {
+        body,
+        html {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -43,9 +45,19 @@
         }
 
         @keyframes floatUp {
-            0% { transform: translateY(0) scale(1); opacity: 0.6; }
-            50% { opacity: 0.8; }
-            100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.6;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-110vh) scale(1.2);
+                opacity: 0;
+            }
         }
 
         .heart-container {
@@ -68,7 +80,8 @@
             z-index: 1;
         }
 
-        .heart::before, .heart::after {
+        .heart::before,
+        .heart::after {
             content: "";
             width: 300px;
             height: 300px;
@@ -77,8 +90,15 @@
             position: absolute;
         }
 
-        .heart::before { top: -150px; left: 0; }
-        .heart::after { left: 150px; top: 0; }
+        .heart::before {
+            top: -150px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: 150px;
+            top: 0;
+        }
 
         .message {
             display: none;
@@ -139,20 +159,21 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="message" id="message">Chào em bé Tấn Đù!</div>
     <div class="heart-container">
         <div class="heart" onclick="animateHeart()"></div>
     </div>
-    
+
     <div class="question" id="question">
         <label for="morning">Lịch học buổi sáng bắt đầu và kết thúc thế nào?</label>
         <input type="text" id="morning" placeholder="VD: 8:00 - 11:00">
-        
+
         <label for="afternoon">Lịch học buổi chiều bắt đầu và kết thúc thế nào?</label>
         <input type="text" id="afternoon" placeholder="VD: 13:30 - 17:00">
-        
+
         <button onclick="submitAnswer()">Gửi câu trả lời</button>
     </div>
 
@@ -166,7 +187,7 @@
             message.textContent = "Chào em bé Tấn Đù!";
             heart.style.display = 'none';
 
-            setTimeout(function() {
+            setTimeout(function () {
                 message.textContent = "Anh hơi ngại nhắn hỏi lại nên là...";
                 document.getElementById('question').style.display = 'block';
             }, 3000);
@@ -177,7 +198,7 @@
             for (let i = 0; i < 30; i++) {
                 const bubble = document.createElement('div');
                 bubble.classList.add('bubble');
-                bubble.style.left = Math.random() * 100 + 'vw'; 
+                bubble.style.left = Math.random() * 100 + 'vw';
                 bubble.style.animationDuration = Math.random() * (12 - 6) + 6 + 's';
                 floatingBubbles.appendChild(bubble);
             }
@@ -195,24 +216,19 @@
 
                 // Thay ID các trường của bạn
                 var formData = new FormData();
-                formData.append('entry.1626366994', morning); // Thay YOUR_MORNING_FIELD_ID bằng ID trường của buổi sáng
-                formData.append('entry.1382403153', afternoon); // Thay YOUR_AFTERNOON_FIELD_ID bằng ID trường của buổi chiều
+                formData.append('entry.119203989', morning); // Thay YOUR_MORNING_FIELD_ID bằng ID trường của buổi sáng
+                formData.append('entry.1258428662', afternoon); // Thay YOUR_AFTERNOON_FIELD_ID bằng ID trường của buổi chiều
 
                 fetch(formURL, {
                     method: 'POST',
                     body: formData
                 })
-                .then(response => {
-                    if (response.ok) {
+                    .then(response => {
                         alert("Cảm ơn em bé Tấn Đù đã trả lời! Buổi sáng: " + morning + ", Buổi chiều: " + afternoon);
-                    } else {
-                        alert("Đã có lỗi xảy ra khi gửi dữ liệu!");
-                    }
-                })
-                .catch(error => {
-                    console.error("Lỗi:", error);
-                    alert("Đã có lỗi xảy ra khi gửi dữ liệu!");
-                });
+                    })
+                    .catch(error => {
+                        alert("Cảm ơn em bé Tấn Đù đã trả lời! Buổi sáng: " + morning + ", Buổi chiều: " + afternoon);
+                    });
             } else {
                 alert("Vui lòng điền đầy đủ thông tin!");
             }
@@ -220,4 +236,5 @@
     </script>
 
 </body>
+<!-- https://docs.google.com/forms/d/e/1FAIpQLSc2__g5agiWNKqSX8_PFggWfws3PfRx41rYCz7dmUMGBx6jtg/viewform?usp=pp_url&entry.119203989=123&entry.1258428662=123 -->
 </html>
