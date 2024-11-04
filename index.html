@@ -4,24 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang web trái tim</title>
-    <!-- Thêm liên kết Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Frankfurter&display=swap" rel="stylesheet">
     <style>
-        /* Căn giữa trái tim trên trang */
+        /* CSS của trang */
         body, html {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh; /* Chiều cao bằng chiều cao màn hình */
+            height: 100vh;
             margin: 0;
             background-color: pink;
-            font-family: 'Frankfurter', sans-serif; /* Sử dụng font Frankfurter */
-            overflow: hidden; /* Giữ nguyên để không có thanh cuộn */
-            width: 100vw; /* Đảm bảo chiều rộng là 100% của cửa sổ */
-            position: relative; /* Để dễ dàng căn chỉnh các phần tử */
+            font-family: 'Frankfurter', sans-serif;
+            overflow: hidden;
+            width: 100vw;
+            position: relative;
         }
 
-        /* Tạo hiệu ứng bong bóng lơ lửng */
         .floating-bubbles {
             position: absolute;
             bottom: 0;
@@ -29,102 +27,83 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            pointer-events: none; /* Không ảnh hưởng đến các sự kiện chuột */
-            z-index: -1; /* Để bong bóng ở dưới cùng */
+            pointer-events: none;
+            z-index: -1;
         }
 
         .bubble {
             position: absolute;
-            bottom: -50px; /* Bắt đầu từ dưới màn hình */
+            bottom: -50px;
             width: 20px;
             height: 20px;
             background-color: rgba(255, 255, 255, 0.8);
             border-radius: 50%;
-            animation: floatUp 6s infinite; /* Thay đổi thời gian để bong bóng nổi lên nhanh hơn */
+            animation: floatUp 6s infinite;
             opacity: 0.6;
         }
 
-        /* Hiệu ứng lơ lửng từ dưới lên */
         @keyframes floatUp {
-            0% {
-                transform: translateY(0) scale(1);
-                opacity: 0.6;
-            }
-            50% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(-110vh) scale(1.2);
-                opacity: 0;
-            }
+            0% { transform: translateY(0) scale(1); opacity: 0.6; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
         }
 
-        /* Tạo hình trái tim */
         .heart-container {
             position: relative;
-            width: 700px; /* Kích thước khối chứa trái tim */
-            height: 700px; /* Kích thước khối chứa trái tim */
+            width: 700px;
+            height: 700px;
             display: flex;
-            justify-content: center; /* Căn giữa trái tim trong khối chứa */
-            align-items: center; /* Căn giữa trái tim trong khối chứa */
+            justify-content: center;
+            align-items: center;
         }
 
         .heart {
-            width: 300px; /* Kích thước trái tim nhỏ hơn */
+            width: 300px;
             height: 300px;
             background-color: red;
             position: relative;
             transform: rotate(-45deg);
             cursor: pointer;
             transition: all 0.5s;
-            z-index: 1; /* Đảm bảo trái tim nằm trên bong bóng */
+            z-index: 1;
         }
 
         .heart::before, .heart::after {
             content: "";
-            width: 300px; /* Kích thước trái tim nhỏ hơn */
+            width: 300px;
             height: 300px;
             background-color: red;
             border-radius: 50%;
             position: absolute;
         }
 
-        .heart::before {
-            top: -150px; /* Điều chỉnh vị trí để hiển thị tốt hơn */
-            left: 0;
-        }
+        .heart::before { top: -150px; left: 0; }
+        .heart::after { left: 150px; top: 0; }
 
-        .heart::after {
-            left: 150px; /* Điều chỉnh vị trí để hiển thị tốt hơn */
-            top: 0;
-        }
-
-        /* Dòng chữ hiện ra */
         .message {
             display: none;
-            font-size: 48px; /* Tăng kích thước chữ cho rõ ràng */
+            font-size: 48px;
             font-weight: bold;
             color: #333;
             text-align: center;
             position: absolute;
-            top: 30%; /* Đặt vị trí cách giữa */
-            z-index: 1; /* Đảm bảo chữ ở trên trái tim */
+            top: 30%;
+            z-index: 1;
         }
 
-        /* Bảng câu hỏi */
         .question {
             display: none;
             text-align: center;
             position: absolute;
-            top: 60%; /* Đặt vị trí câu hỏi dưới tiêu đề */
-            width: 100%; /* Đảm bảo câu hỏi chiếm chiều rộng đầy đủ */
-            transform: translateY(-50%); /* Giúp căn giữa hơn */
+            top: 60%;
+            width: 100%;
+            transform: translateY(-50%);
         }
 
         .question label {
             margin-bottom: 10px;
-            font-size: 24px; /* Tăng kích thước chữ cho rõ ràng */
-            display: block; /* Đặt label thành khối để dễ dàng căn chỉnh */
+            font-size: 24px;
+            display: block;
         }
 
         .question input {
@@ -132,16 +111,16 @@
             font-size: 18px;
             width: 80%;
             margin: 10px auto;
-            border-radius: 20px; /* Bo tròn góc của ô nhập */
-            border: 2px solid #ff69b4; /* Viền màu hồng */
-            outline: none; /* Bỏ viền ngoài */
-            transition: border 0.3s; /* Hiệu ứng chuyển tiếp cho viền */
-            box-shadow: 0 0 10px rgba(255, 105, 180, 0.5); /* Hiệu ứng đổ bóng */
+            border-radius: 20px;
+            border: 2px solid #ff69b4;
+            outline: none;
+            transition: border 0.3s;
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
         }
 
         .question input:focus {
-            border-color: #ff1493; /* Màu viền khi ô nhập được chọn */
-            box-shadow: 0 0 15px rgba(255, 20, 147, 0.5); /* Hiệu ứng đổ bóng khi ô nhập được chọn */
+            border-color: #ff1493;
+            box-shadow: 0 0 15px rgba(255, 20, 147, 0.5);
         }
 
         .question button {
@@ -150,9 +129,9 @@
             background-color: #4CAF50;
             color: white;
             border: none;
-            border-radius: 20px; /* Bo tròn góc của nút */
+            border-radius: 20px;
             cursor: pointer;
-            transition: background-color 0.3s; /* Hiệu ứng chuyển tiếp cho màu nền */
+            transition: background-color 0.3s;
         }
 
         .question button:hover {
@@ -162,16 +141,11 @@
 </head>
 <body>
 
-    <!-- Dòng chữ chào mừng -->
     <div class="message" id="message">Chào em bé Tấn Đù!</div>
-
-    <!-- Khối chứa trái tim -->
     <div class="heart-container">
-        <!-- Phần trái tim -->
         <div class="heart" onclick="animateHeart()"></div>
     </div>
     
-    <!-- Bảng câu hỏi -->
     <div class="question" id="question">
         <label for="morning">Lịch học buổi sáng bắt đầu và kết thúc thế nào?</label>
         <input type="text" id="morning" placeholder="VD: 8:00 - 11:00">
@@ -182,55 +156,63 @@
         <button onclick="submitAnswer()">Gửi câu trả lời</button>
     </div>
 
-    <!-- Container cho bong bóng -->
     <div class="floating-bubbles" id="floatingBubbles"></div>
 
     <script>
         function animateHeart() {
             var heart = document.querySelector('.heart');
             var message = document.getElementById('message');
-            
-            // Hiển thị dòng chữ sau khi nhấp
             message.style.display = 'block';
-            
-            // Cập nhật văn bản tiêu đề
             message.textContent = "Chào em bé Tấn Đù!";
-            
-            // Ẩn trái tim
             heart.style.display = 'none';
-            
-            // Hiển thị câu hỏi sau 3 giây
+
             setTimeout(function() {
-                // Cập nhật văn bản tiêu đề cho câu hỏi
                 message.textContent = "Anh hơi ngại nhắn hỏi lại nên là...";
                 document.getElementById('question').style.display = 'block';
             }, 3000);
         }
 
-        // Tạo bong bóng lơ lửng trên trang
         function createFloatingBubbles() {
             const floatingBubbles = document.getElementById('floatingBubbles');
-            for (let i = 0; i < 30; i++) { // Tăng số lượng bong bóng lên 30
+            for (let i = 0; i < 30; i++) {
                 const bubble = document.createElement('div');
                 bubble.classList.add('bubble');
-                
-                // Đặt vị trí ngẫu nhiên và thời gian ngẫu nhiên
                 bubble.style.left = Math.random() * 100 + 'vw'; 
-                bubble.style.animationDuration = Math.random() * (12 - 6) + 6 + 's'; // Thời gian từ 6 đến 12 giây
+                bubble.style.animationDuration = Math.random() * (12 - 6) + 6 + 's';
                 floatingBubbles.appendChild(bubble);
             }
         }
 
         createFloatingBubbles();
 
-        // Hàm xử lý khi người dùng bấm "Gửi câu trả lời"
         function submitAnswer() {
             var morning = document.getElementById('morning').value;
             var afternoon = document.getElementById('afternoon').value;
-            
-            // Kiểm tra đầu vào và hiển thị một thông báo xác nhận (đơn giản)
+
             if (morning && afternoon) {
-                alert("Cảm ơn em bé Tấn Đù đã trả lời! Buổi sáng: " + morning + ", Buổi chiều: " + afternoon);
+                // Thay URL Google Form của bạn vào đây
+                var formURL = 'https://docs.google.com/forms/d/e/1FAIpQLSc2__g5agiWNKqSX8_PFggWfws3PfRx41rYCz7dmUMGBx6jtg/viewform?usp=pp_url';
+
+                // Thay ID các trường của bạn
+                var formData = new FormData();
+                formData.append('entry.1626366994', morning); // Thay YOUR_MORNING_FIELD_ID bằng ID trường của buổi sáng
+                formData.append('entry.1382403153', afternoon); // Thay YOUR_AFTERNOON_FIELD_ID bằng ID trường của buổi chiều
+
+                fetch(formURL, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert("Cảm ơn em bé Tấn Đù đã trả lời! Buổi sáng: " + morning + ", Buổi chiều: " + afternoon);
+                    } else {
+                        alert("Đã có lỗi xảy ra khi gửi dữ liệu!");
+                    }
+                })
+                .catch(error => {
+                    console.error("Lỗi:", error);
+                    alert("Đã có lỗi xảy ra khi gửi dữ liệu!");
+                });
             } else {
                 alert("Vui lòng điền đầy đủ thông tin!");
             }
